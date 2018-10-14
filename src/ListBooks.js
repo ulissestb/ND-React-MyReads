@@ -18,10 +18,11 @@ const ListBooks = (props) => {
               <ol className="books-grid">
               {props.books.filter( book => book.shelf === 'currentlyReading').map( book => (
                 <li key={book.title}>
-                    <div className="book">
-                      <div className="book-cover" style={ {width: 128, height: 188, backgroundImage:`url(${book.imageLinks.thumbnail})`}}>
+                  <div className='book'>
+                    <div className="book-top">
+                      <div className="book-cover" style={ {width: 128, height: 188, backgroundImage:`url(${book.imageLinks.thumbnail})`}}></div>
                         <div className="book-shelf-changer">
-                            <select value={book.shelf} >
+                            <select value={book.shelf} onChange={(e) => props.onChangeShelf(e, book)} >
                               <option value="move" disabled>Move to...</option>
                               <option value="currentlyReading">Currently Reading</option>
                               <option value="wantToRead">Want to Read</option>
@@ -32,7 +33,7 @@ const ListBooks = (props) => {
                       </div>
                       <div className="book-title">{book.title}</div>
                       <div className="book-authors">{book.authors}</div>
-                    </div>
+                  </div>
                 </li>)
               )}
               </ol>
@@ -47,10 +48,11 @@ const ListBooks = (props) => {
             <ol className="books-grid">
             {props.books.filter( book => book.shelf === 'wantToRead').map( book => (
               <li key={book.title}>
-                  <div className="book">
-                    <div className="book-cover" style={ {width: 128, height: 188, backgroundImage:`url(${book.imageLinks.thumbnail})`}}>
+                <div className='book'>
+                  <div className="book-top">
+                    <div className="book-cover" style={ {width: 128, height: 188, backgroundImage:`url(${book.imageLinks.thumbnail})`}}></div>
                       <div className="book-shelf-changer">
-                          <select value={book.shelf}>
+                          <select value={book.shelf} onChange={(e) => props.onChangeShelf(e, book)} >
                             <option value="move" disabled>Move to...</option>
                             <option value="currentlyReading">Currently Reading</option>
                             <option value="wantToRead">Want to Read</option>
@@ -61,7 +63,7 @@ const ListBooks = (props) => {
                     </div>
                     <div className="book-title">{book.title}</div>
                     <div className="book-authors">{book.authors}</div>
-                  </div>
+                </div>
               </li>)
             )}
             </ol>
@@ -76,10 +78,11 @@ const ListBooks = (props) => {
               <ol className="books-grid">
               {props.books.filter( book => book.shelf === 'read').map( book => (
                 <li key={book.title}>
-                    <div className="book">
-                      <div className="book-cover" style={ {width: 128, height: 188, backgroundImage:`url(${book.imageLinks.thumbnail})`}}>
+                  <div className='book'>
+                    <div className="book-top">
+                      <div className="book-cover" style={ {width: 128, height: 188, backgroundImage:`url(${book.imageLinks.thumbnail})`}}></div>
                         <div className="book-shelf-changer">
-                            <select value={book.shelf}>
+                            <select value={book.shelf} onChange={(e) => props.onChangeShelf(e, book)} >
                               <option value="move" disabled>Move to...</option>
                               <option value="currentlyReading">Currently Reading</option>
                               <option value="wantToRead">Want to Read</option>
@@ -90,7 +93,7 @@ const ListBooks = (props) => {
                       </div>
                       <div className="book-title">{book.title}</div>
                       <div className="book-authors">{book.authors}</div>
-                    </div>
+                  </div>
                 </li>)
               )}
               </ol>
@@ -101,7 +104,7 @@ const ListBooks = (props) => {
         </div>
       </div>
       <div className="open-search">
-        <a>Add a book</a>
+        <a href="#">Add a book</a>
       </div>
     </div>
 

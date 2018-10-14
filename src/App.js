@@ -43,9 +43,9 @@ class BooksApp extends React.Component {
       <div className="app">
           <ListBooks
            books={this.state.books}
-           
+           onChangeShelf={this.handleChangeShelf}
            />
-          <Search />
+          
 
       </div>
     )
