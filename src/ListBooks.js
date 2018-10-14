@@ -104,7 +104,7 @@ const ListBooks = (props) => {
         </div>
       </div>
       <div className="open-search">
-        <a href="#">Add a book</a>
+        <a href="/search">Add a book</a>
       </div>
     </div>
 
