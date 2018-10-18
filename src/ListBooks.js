@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 
 const ListBooks = (props) => {
   return(
@@ -75,7 +76,6 @@ const ListBooks = (props) => {
             <h2 className="bookshelf-title">Read</h2>
             <div className="bookshelf-books">
               <ol className="books-grid">
-              <ol className="books-grid">
               {props.books.filter( book => book.shelf === 'read').map( book => (
                 <li key={book.title}>
                   <div className='book'>
@@ -97,15 +97,15 @@ const ListBooks = (props) => {
                 </li>)
               )}
               </ol>
-              </ol>
             </div>
           </div>
 
         </div>
       </div>
-      <div className="open-search">
-        <a href="/search">Add a book</a>
-      </div>
+
+      <Link className="open-search" to='/search'>
+      <a>Add a book</a>
+      </Link>
     </div>
 
 
