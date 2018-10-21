@@ -13,32 +13,29 @@ const ListBooks = (props) => {
         <div>
           <div className="bookshelf">
             <h2 className="bookshelf-title">Currently Reading</h2>
-
             <div className="bookshelf-books">
-
-              <ol className="books-grid">
-              {props.books.filter( book => book.shelf === 'currentlyReading').map( book => (
-                <li key={book.title}>
-                  <div className='book'>
-                    <div className="book-top">
-                      <div className="book-cover" style={ {width: 128, height: 188, backgroundImage:`url(${book.imageLinks.thumbnail})`}}></div>
-                        <div className="book-shelf-changer">
-                            <select value={book.shelf} onChange={(e) => props.onChangeShelf(e, book)} >
-                              <option value="move" disabled>Move to...</option>
-                              <option value="currentlyReading">Currently Reading</option>
-                              <option value="wantToRead">Want to Read</option>
-                              <option value="read">Read</option>
-                              <option value="none">None</option>
-                            </select>
-                        </div>
+            <ol className="books-grid">
+            {props.books.filter( book => book.shelf === 'currentlyReading').map( book => (
+              <li key={book.title}>
+                <div className='book'>
+                  <div className="book-top">
+                    <div className="book-cover" style={ {width: 128, height: 188, backgroundImage: book.imageLinks ? `url(${book.imageLinks.thumbnail})` : null}}></div>
+                      <div className="book-shelf-changer">
+                          <select value={book.shelf} onChange={(e) => props.onChangeShelf(e, book)} >
+                            <option value="move" disabled>Move to...</option>
+                            <option value="currentlyReading">Currently Reading</option>
+                            <option value="wantToRead">Want to Read</option>
+                            <option value="read">Read</option>
+                            <option value="none">None</option>
+                          </select>
                       </div>
-                      <div className="book-title">{book.title}</div>
-                      <div className="book-authors">{book.authors}</div>
-                  </div>
-                </li>)
-              )}
-              </ol>
-
+                    </div>
+                    <div className="book-title">{book.title}</div>
+                    <div className="book-authors">{book.authors}</div>
+                </div>
+              </li>)
+            )}
+            </ol>
             </div>
           </div>
 
@@ -51,7 +48,7 @@ const ListBooks = (props) => {
               <li key={book.title}>
                 <div className='book'>
                   <div className="book-top">
-                    <div className="book-cover" style={ {width: 128, height: 188, backgroundImage:`url(${book.imageLinks.thumbnail})`}}></div>
+                    <div className="book-cover" style={ {width: 128, height: 188, backgroundImage: book.imageLinks ? `url(${book.imageLinks.thumbnail})` : null}}></div>
                       <div className="book-shelf-changer">
                           <select value={book.shelf} onChange={(e) => props.onChangeShelf(e, book)} >
                             <option value="move" disabled>Move to...</option>
@@ -80,7 +77,7 @@ const ListBooks = (props) => {
                 <li key={book.title}>
                   <div className='book'>
                     <div className="book-top">
-                      <div className="book-cover" style={ {width: 128, height: 188, backgroundImage:`url(${book.imageLinks.thumbnail})`}}></div>
+                      <div className="book-cover" style={ {width: 128, height: 188, backgroundImage: book.imageLinks ? `url(${book.imageLinks.thumbnail})` : null}}></div>
                         <div className="book-shelf-changer">
                             <select value={book.shelf} onChange={(e) => props.onChangeShelf(e, book)} >
                               <option value="move" disabled>Move to...</option>
@@ -104,7 +101,7 @@ const ListBooks = (props) => {
       </div>
 
       <Link className="open-search" to='/search'>
-      <a>Add a book</a>
+      Add a book
       </Link>
     </div>
 
