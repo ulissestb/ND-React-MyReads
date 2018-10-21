@@ -9,24 +9,24 @@ class Search extends Component{
     query: ""
   }
 
-/*componentWillUnmount(){
-  this.setState({ books: []})
-}*/
+clearQuery(){
+  this.setState({query: '' , books: []})
 
-  updateQuery = event =>{
-    const query = event.target.value;
-    if (query !== '')
-      BooksAPI.search(query).then( (searchedBooks) =>  {
-          this.setState({books: searchedBooks})
-      })
-      console.log(query)
-      this.setState({query})
+}
+
+updateQuery = async event =>{
+  const bookName = event.target.value;
+  if (bookName !== ''){
+    BooksAPI.search(bookName).then( (searchedBooks) =>  {
+        this.setState({books: searchedBooks})
+    })
+    this.setState({query: bookName})
+  }else{
+   this.clearQuery()
+
   }
 
-
-  clearQuery = () =>{
-    this.setState({books:[]})
-  }
+}
 
   render(){
     const {onChangeShelf} = this.props;
