@@ -1,38 +1,9 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
-import * as BooksAPI from './BooksAPI'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-class Search extends Component{
-
-  state={
-    books: [],
-    query: ""
-  }
+const Search = (props) => {
 
 
-
-clearQuery(){
-  this.setState({query: '' , books: []})
-
-}
-
-updateQuery = async event =>{
-  const bookName = event.target.value;
-  if (bookName !== ''){
-    BooksAPI.search(bookName).then( (searchedBooks) =>  {
-        this.setState({books: searchedBooks})
-    })
-    this.setState({query: bookName})
-  }else{
-   this.clearQuery()
-
-  }
-
-}
-
-  render(){
-    const {onChangeShelf} = this.props;
-    const { books } = this.state;
 
     return(
       <div className="search-books">
@@ -42,19 +13,19 @@ updateQuery = async event =>{
             to='/'>Close
           </Link>
           <div className="search-books-input-wrapper">
-            <input type="text" placeholder="Search by title or author" value={this.state.query} onChange={this.updateQuery}/>
+            <input type="text" placeholder="Search by title or author" value={props.query} onChange={props.updateQuery}/>
           </div>
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-          {books.filter( book => book.shelf === undefined ).map( (book) => (
+          {props.books.filter( b => b.id !== props.books.id ).map( (book) => (
 
             <li key={book.id}>
               <div className='book'>
                 <div className="book-top">
                   <div className="book-cover"style={ {width: 128, height: 188, backgroundImage:  book.imageLinks ? `url(${book.imageLinks.thumbnail})` : null }}></div>
                     <div className="book-shelf-changer">
-                    <select defaultValue={book.shelf !== undefined ? book.shelf : 'none'}   value={book.shelf} onChange={(event) => onChangeShelf(event, book)} >
+                    <select  defaultValue={book.shelf !== undefined ? book.shelf : 'none'} onChange={(event) => props.onChangeShelf(event, book)} >
                       <option value="move" disabled>Move to...</option>
                       <option value="currentlyReading">Currently Reading</option>
                       <option value="wantToRead">Want to Read</option>
@@ -73,7 +44,7 @@ updateQuery = async event =>{
       </div>
 
     )
-  }
+
 }
 
 export default Search

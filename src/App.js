@@ -8,14 +8,38 @@ import Search from './Search'
 
 class BooksApp extends React.Component {
   state = {
-    books: []
+    books: [],
+    searchBooks: [],
+    query: ''
   }
+
  componentDidMount(){
     BooksAPI.getAll()
       .then( (books) => {
         this.setState({books})
       } )
  }
+
+
+ clearQuery(){
+   this.setState({query: '' , searchBooks: []})
+
+ }
+
+ updateQuery = async event =>{
+   const bookName = event.target.value;
+   if (bookName !== ''){
+     BooksAPI.search(bookName).then( (searchedBooks) =>  {
+         this.setState({searchBooks: searchedBooks})
+     })
+     this.setState({query: bookName})
+   }else{
+    this.clearQuery()
+
+   }
+
+ }
+
 
  handleChangeShelf = (e, bookToUpdateShelf) => {
     const shelf = e.target.value;
@@ -47,7 +71,8 @@ class BooksApp extends React.Component {
          )}/>
       <Route path='/search' render={ () => (
         <Search
-        
+        books={this.state.searchBooks}
+        updateQuery={this.updateQuery}
         onChangeShelf={this.handleChangeShelf}
          />
       )} />
