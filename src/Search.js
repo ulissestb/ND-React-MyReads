@@ -47,14 +47,14 @@ updateQuery = async event =>{
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-          {books.map( (book) => (
+          {books.filter( book => book.shelf === undefined ).map( (book) => (
 
             <li key={book.id}>
               <div className='book'>
                 <div className="book-top">
                   <div className="book-cover"style={ {width: 128, height: 188, backgroundImage:  book.imageLinks ? `url(${book.imageLinks.thumbnail})` : null }}></div>
                     <div className="book-shelf-changer">
-                    <select defaultValue="none"   value={book.shelf} onChange={(event) => onChangeShelf(event, book)} >
+                    <select defaultValue={book.shelf !== undefined ? book.shelf : 'none'}   value={book.shelf} onChange={(event) => onChangeShelf(event, book)} >
                       <option value="move" disabled>Move to...</option>
                       <option value="currentlyReading">Currently Reading</option>
                       <option value="wantToRead">Want to Read</option>

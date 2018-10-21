@@ -16,7 +16,7 @@ const ListBooks = (props) => {
             <div className="bookshelf-books">
             <ol className="books-grid">
             {props.books.filter( book => book.shelf === 'currentlyReading').map( book => (
-              <li key={book.title}>
+              <li key={book.id}>
                 <div className='book'>
                   <div className="book-top">
                     <div className="book-cover" style={ {width: 128, height: 188, backgroundImage: book.imageLinks ? `url(${book.imageLinks.thumbnail})` : null}}></div>
@@ -45,7 +45,7 @@ const ListBooks = (props) => {
             <div className="bookshelf-books">
             <ol className="books-grid">
             {props.books.filter( book => book.shelf === 'wantToRead').map( book => (
-              <li key={book.title}>
+              <li key={book.id}>
                 <div className='book'>
                   <div className="book-top">
                     <div className="book-cover" style={ {width: 128, height: 188, backgroundImage: book.imageLinks ? `url(${book.imageLinks.thumbnail})` : null}}></div>
@@ -74,7 +74,7 @@ const ListBooks = (props) => {
             <div className="bookshelf-books">
               <ol className="books-grid">
               {props.books.filter( book => book.shelf === 'read').map( book => (
-                <li key={book.title}>
+                <li key={book.id}>
                   <div className='book'>
                     <div className="book-top">
                       <div className="book-cover" style={ {width: 128, height: 188, backgroundImage: book.imageLinks ? `url(${book.imageLinks.thumbnail})` : null}}></div>
