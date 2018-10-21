@@ -9,6 +9,8 @@ class Search extends Component{
     query: ""
   }
 
+
+
 clearQuery(){
   this.setState({query: '' , books: []})
 
