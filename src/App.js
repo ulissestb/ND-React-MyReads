@@ -20,13 +20,12 @@ class BooksApp extends React.Component {
       } )
  }
 
-
  clearQuery(){
    this.setState({query: '' , searchBooks: []})
 
  }
 
- updateQuery = async event =>{
+ updateQuery = event =>{
    const bookName = event.target.value;
    if (bookName !== ''){
      BooksAPI.search(bookName).then( (searchedBooks) =>  {
@@ -35,9 +34,7 @@ class BooksApp extends React.Component {
      this.setState({query: bookName})
    }else{
     this.clearQuery()
-
    }
-
  }
 
 
@@ -59,8 +56,15 @@ class BooksApp extends React.Component {
     })
   }
 
-
   render() {
+    const {searchBooks, books} = this.state;
+
+
+    for(let item of searchBooks ) {
+        const livro = books.find(elem => elem.id === item.id);
+       if(livro) item.shelf = livro.shelf
+}
+
     return (
       <div className="app">
       <Route exact path='/' render={ () => (
@@ -71,7 +75,8 @@ class BooksApp extends React.Component {
          )}/>
       <Route path='/search' render={ () => (
         <Search
-        books={this.state.searchBooks}
+        initBooks={books}
+        books={searchBooks}
         updateQuery={this.updateQuery}
         onChangeShelf={this.handleChangeShelf}
          />

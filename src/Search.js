@@ -18,8 +18,7 @@ const Search = (props) => {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-          {props.books.filter( b => b.id !== props.books.id ).map( (book) => (
-
+          {props.books.filter( b => b.id !== props.initBooks.id).map( (book) => (
             <li key={book.id}>
               <div className='book'>
                 <div className="book-top">
